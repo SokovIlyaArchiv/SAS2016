@@ -3,6 +3,7 @@
 EventManager::EventManager() {
     lastPosPressed = lastPosReleased = {0, 0};
     currentAppState = lastAppState = APP_STATE::MENU;
+    maxId = 0;
 }
 
 void EventManager::takeEvents(shared_ptr<RenderWindow>& window) {
@@ -35,6 +36,14 @@ void EventManager::takeEvents(shared_ptr<RenderWindow>& window) {
             default:
                 break;
         }
+    }
+}
+
+void EventManager::connect(Widget *widget) {
+    if(widget != nullptr) {
+        widget->setId(maxId);
+        widgets.push_back(widget);
+        maxId++;
     }
 }
 

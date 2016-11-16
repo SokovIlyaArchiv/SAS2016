@@ -1,12 +1,11 @@
 #include "widget.h"
 
-Widget::Widget(unsigned id) :
-    id(id) {
-    setPosition({0, 0});
-}
-
 void Widget::setPosition(const Vector2f newPos) {
     position = newPos;
+}
+
+void Widget::setId(const unsigned id) {
+    this->id = id;
 }
 
 unsigned Widget::getId() const {

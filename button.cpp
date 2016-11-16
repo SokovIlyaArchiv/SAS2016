@@ -1,15 +1,15 @@
 #include "button.h"
 
-Button::Button(Vector2f pos, Font& font, unsigned id) :
-    Widget(id) {
+Button::Button(Vector2f pos, Font& font) :
+    Widget(){
     text = std::make_shared<Text>("AAA", font);
     text->setCharacterSize(50);
     text->setColor(Color::Red);
     background.setFillColor(Color::Black);
     FloatRect textRect = text->getLocalBounds();
-    text->setOrigin(textRect.width / 2. + textRect.left,
-                    textRect.height / 2. + textRect.top);
-    background.setOrigin({textRect.width / 2., textRect.height / 2.});
+    text->setOrigin(textRect.width / 2.f + textRect.left,
+                    textRect.height / 2.f + textRect.top);
+    background.setOrigin({textRect.width / 2.f, textRect.height / 2.f});
     text->setPosition(pos);
     background.setSize({textRect.width, textRect.height});
     background.setPosition(pos);

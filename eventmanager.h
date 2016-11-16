@@ -13,6 +13,7 @@ class EventManager {
 public:
     EventManager();
     void takeEvents(shared_ptr<RenderWindow>& window);
+    void connect(Widget* widget);
     APP_STATE getAppState() const;
 private:
     Event event;
@@ -20,5 +21,7 @@ private:
               lastAppState;
     Vector2i lastPosPressed,
              lastPosReleased;
+
+    unsigned maxId;
     vector<Widget*> widgets;
 };

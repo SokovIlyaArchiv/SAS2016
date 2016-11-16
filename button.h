@@ -5,7 +5,7 @@
 
 class Button : public Widget {
 public:
-    Button(Vector2f pos, Font& font, unsigned id);
+    Button(Vector2f pos, Font& font);
     void setSprite(std::shared_ptr<Sprite>& sprite);
     void setText(const std::string& text);
     virtual void draw(RenderTarget& target, RenderStates states) const;

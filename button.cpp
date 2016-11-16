@@ -2,15 +2,17 @@
 
 Button::Button(Vector2f pos, Font& font, unsigned id) :
     Widget(id) {
-    text = std::make_shared<Text>("1", font);
-    text->setCharacterSize(500);
+    text = std::make_shared<Text>("AAA", font);
+    text->setCharacterSize(50);
+    text->setColor(Color::Red);
+    background.setFillColor(Color::Black);
+    FloatRect textRect = text->getLocalBounds();
+    text->setOrigin(textRect.width / 2. + textRect.left,
+                    textRect.height / 2. + textRect.top);
+    background.setOrigin({textRect.width / 2., textRect.height / 2.});
     text->setPosition(pos);
-    text->setColor(Color::Black);
-    background.setSize({text->getLocalBounds().width, text->getLocalBounds().height});
-    background.setPosition({pos.x, pos.y});
-    background.setFillColor(Color::White);
-    background.setOutlineColor(Color::Black);
-    background.setOutlineThickness(1);
+    background.setSize({textRect.width, textRect.height});
+    background.setPosition(pos);
 }
 
 void Button::setSprite(std::shared_ptr<Sprite> &sprite) {

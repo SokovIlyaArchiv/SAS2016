@@ -7,7 +7,7 @@ Application::Application(int width, int height) {
     eventManager = make_shared<EventManager>();
     buttonFont = make_shared<Font>();
     buttonFont->loadFromFile("Data/Fonts/arial.ttf");
-    button = make_shared<Button>(Vector2f{400, 300}, *buttonFont.get(), 0);
+    button = make_shared<Button>(Vector2f{100, 100}, *buttonFont.get(), 0);
     window->setFramerateLimit(60);
 }
 

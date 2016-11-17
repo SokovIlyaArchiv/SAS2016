@@ -6,8 +6,8 @@ EventManager::EventManager() {
     maxId = 0;
 }
 
-void EventManager::takeEvents(shared_ptr<RenderWindow>& window) {
-    while(window->pollEvent(event)) {
+void EventManager::processEvents(shared_ptr<RenderWindow>& window) {
+    while(window->pollEvent(event)) { // TAKE EVENTS
         switch (event.type) {
             case Event::Closed:
                 swap(currentAppState, lastAppState);
@@ -37,14 +37,14 @@ void EventManager::takeEvents(shared_ptr<RenderWindow>& window) {
                 break;
         }
     }
+    for(auto pWidget : widgets) {
+    }
 }
 
-void EventManager::connect(Widget *widget) {
-    if(widget != nullptr) {
-        widget->setId(maxId);
-        widgets.push_back(widget);
-        maxId++;
-    }
+void EventManager::connect(shared_ptr<Button> widget) {
+    widget->setId(maxId);
+    widgets.push_back(widget);
+    maxId++;
 }
 
 APP_STATE EventManager::getAppState() const {

@@ -11,8 +11,8 @@ Button::Button(Vector2f pos, Font& font) :
                     textRect.height / 2.f + textRect.top);
     background.setOrigin({textRect.width / 2.f, textRect.height / 2.f});
     text->setPosition(pos);
-    background.setSize({textRect.width, textRect.height});
-    background.setPosition(pos);
+    background.setSize({textRect.width + 20, textRect.height + 20});
+    background.setPosition(pos - Vector2f{10, 10});
 }
 
 void Button::setSprite(std::shared_ptr<Sprite> &sprite) {

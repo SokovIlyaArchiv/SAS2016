@@ -8,12 +8,13 @@ Application::Application(int width, int height) {
     buttonFont = make_shared<Font>();
     buttonFont->loadFromFile("Data/Fonts/arial.ttf");
     button = make_shared<Button>(Vector2f{100, 100}, *buttonFont.get());
+    eventManager->connect(button);
     window->setFramerateLimit(60);
 }
 
 void Application::run() {
     while(eventManager->getAppState() != APP_STATE::QUIT) {
-        eventManager->takeEvents(window);
+        eventManager->processEvents(window);
         window->clear(Color(255, 255, 255, 255));
         window->draw(*button.get());
         window->display();

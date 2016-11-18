@@ -4,14 +4,17 @@
 using namespace sf;
 class Widget : public Drawable {
 public:
-    unsigned getId() const;
+    Widget();
     void setId(const unsigned id);
-    Vector2f getPosition() const;
+    unsigned getId() const;
+    Vector2i getPosition() const;
+    virtual bool contains(const Vector2i point) const = 0;
 protected:
     virtual void draw(RenderTarget& target, RenderStates states) const = 0;
-    void setPosition(const Vector2f newPos);
+    void setPosition(const Vector2i newPosition);
     virtual ~Widget();
 private:
     unsigned id;
-    Vector2f position;
+    bool visible;
+    Vector2i position;
 };

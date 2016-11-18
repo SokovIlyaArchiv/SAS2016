@@ -1,12 +1,16 @@
 #include "eventmanager.h"
+#include <random>
 
 EventManager::EventManager() {
-    lastPosPressed = lastPosReleased = {0, 0};
+    lastPosPressed = lastPosReleased = {-1000, -1000};
     currentAppState = lastAppState = APP_STATE::MENU;
     maxId = 0;
 }
 
 void EventManager::processEvents(shared_ptr<RenderWindow>& window) {
+    if(lastPosPressed == Vector2i{-1000, -1000}) {
+        lastPosReleased = {-1000, -1000};
+    }
     while(window->pollEvent(event)) { // TAKE EVENTS
         switch (event.type) {
             case Event::Closed:
@@ -37,11 +41,17 @@ void EventManager::processEvents(shared_ptr<RenderWindow>& window) {
                 break;
         }
     }
-    for(auto pWidget : widgets) {
+    for(auto pWidget : widgets) {   //HANDLING WIDGET EVENTS
+        if(pWidget->contains(lastPosReleased)) {
+            //... ???
+            //function(argc);
+            lastPosReleased = {-1000, -1000};
+        }
     }
 }
 
-void EventManager::connect(shared_ptr<Button> widget) {
+void EventManager::connect(shared_ptr<Widget> widget) {
+    //CONNECT(WHO, EVENT?, FUNCTION?, ARGS?)
     widget->setId(maxId);
     widgets.push_back(widget);
     maxId++;

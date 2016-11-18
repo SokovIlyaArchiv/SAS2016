@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <vector>
 #include <memory>
 
-#include "button.h"
+#include "widget.h"
 
 using namespace std;
 using namespace sf;
@@ -13,7 +14,7 @@ class EventManager {
 public:
     EventManager();
     void processEvents(shared_ptr<RenderWindow>& window);
-    void connect(shared_ptr<Button> widget);
+    void connect(shared_ptr<Widget> widget);
     APP_STATE getAppState() const;
 private:
     Event event;
@@ -22,5 +23,5 @@ private:
     Vector2i lastPosPressed,
              lastPosReleased;
     unsigned maxId;
-    vector<shared_ptr<Button>> widgets;
+    vector<shared_ptr<Widget>> widgets;
 };

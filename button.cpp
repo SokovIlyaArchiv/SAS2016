@@ -1,8 +1,10 @@
 #include "button.h"
+#include <iostream>
 
+using namespace std;
 Button::Button(Vector2f pos, Font& font) :
     Widget(){
-    text = std::make_shared<Text>("AAA", font);
+    text = std::make_shared<Text>("SOME", font);
     text->setCharacterSize(50);
     text->setColor(Color::Red);
     background.setFillColor(Color::Black);
@@ -29,6 +31,16 @@ void Button::draw(RenderTarget &target, RenderStates states) const {
         target.draw(*sprite);
     }
     target.draw(*text.get());
+}
+
+bool Button::contains(const Vector2i point) const {
+    IntRect boundary {
+                 text->getPosition().x - (int)background.getSize().x / 2,
+                 text->getPosition().y - (int)background.getSize().y / 2,
+                 background.getSize().x,
+                 background.getSize().y
+             };
+    return boundary.contains(point);
 }
 
 Button::~Button() {

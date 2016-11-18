@@ -1,7 +1,11 @@
 #include "widget.h"
 
-void Widget::setPosition(const Vector2f newPos) {
-    position = newPos;
+Widget::Widget() {
+    visible = true;
+}
+
+void Widget::setPosition(const Vector2i newPosition) {
+    position = newPosition;
 }
 
 void Widget::setId(const unsigned id) {
@@ -12,7 +16,7 @@ unsigned Widget::getId() const {
     return id;
 }
 
-Vector2f Widget::getPosition() const {
+Vector2i Widget::getPosition() const {
     return position;
 }
 
